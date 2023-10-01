@@ -1,38 +1,98 @@
-.App {
-  text-align: center;
+@keyframes slide_in{
+	0%{
+		transform: translateX(-50%);
+		opacity: 0;
+	}
+	50%{
+		transform: translateX(5%);
+	}
+	75%{
+		transform: translateX(-10%);
+	}
+	100%{
+		transform: translateX(0%);
+		opacity: 1;
+	}
+}
+/* Start Header */
+.container {
+  display: grid;
+  grid-template-areas: "header header header" "section section section";
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
+header {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  grid-area: header;
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+  /* min-height: 10px; */
+  min-height: 2em;
+  max-height: 3.5em;
+  padding: 20px;
+  background-color: hsl(255, 10%, 98%);
+  box-shadow: 0px 2px 0px 0px hsl(255, 10%, 95%);
+  
+  display: grid;
+  grid-template-areas: "title menu";
+  grid-template-columns: 0.15fr 1fr;
+  
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-content: center;
 }
 
-.App-link {
-  color: #61dafb;
+.name{
+  grid-area: title;
+  color: hsl(0, 0%, 0%);
+  text-decoration: none;
+  align-self: center;
+  justify-self: center;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
+/* Menu Part */
+header #menu {
+  grid-area: menu;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(1.2em, 1fr));
+}
+
+.menu_item {
+  color: black;
+  text-decoration: none;
+  font-size: 1em;
+  
+  position: relative;
+  place-self: center;
+}
+
+.line_under {
+  border: 1.9px solid black;
+  opacity: 0;
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+}
+
+.menu_item:hover .line_under, .active .line_under{
+  opacity: 1;
+  animation: slide_in 500ms cubic-bezier(.42,0,.2,1.73);
+  animation-fill-mode: both;
+  animation-direction: alternate;
+}
+
+/*End of Menu part */
+@media (max-width: 1362px){
+  header{
+    grid-template-columns: 0.25fr 1fr;
   }
 }
+/* @media  (max-width: 902px){ */
+  /* header{ */
+    /* display: flex; */
+    /* align-items: center; */
+    /* justify-content: center; */
+  /* } */
+  /* header #menu{ */
+    /* display: none */
+  /* } */
+/* } */
+/* End Header */
